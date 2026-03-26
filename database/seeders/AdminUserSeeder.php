@@ -13,9 +13,10 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         \App\Models\User::firstOrCreate(
-            ['email' => 'admin@admin.com'],
+            ['username' => 'admin'],
             [
                 'name' => 'Administrador',
+                'email' => 'admin@admin.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('password'),
                 'role' => 'admin',
                 'email_verified_at' => now(),

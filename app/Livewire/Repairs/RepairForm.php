@@ -81,6 +81,7 @@ class RepairForm extends Component
             }
             if ($this->status === 'entregado') {
                 $data['salida_date'] = now();
+                $data['delivered_by'] = auth()->id();
             }
             Repair::create($data);
             session()->flash('message', 'Orden de reparación creada con éxito.');
@@ -91,6 +92,7 @@ class RepairForm extends Component
             }
             if ($this->status === 'entregado' && $this->repair->status !== 'entregado') {
                 $data['salida_date'] = now();
+                $data['delivered_by'] = auth()->id();
             }
             $this->repair->update($data);
             session()->flash('message', 'Orden de reparación actualizada con éxito.');

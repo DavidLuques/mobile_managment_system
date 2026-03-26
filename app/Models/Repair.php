@@ -23,6 +23,7 @@ class Repair extends Model
         'salida_date',              // Fecha y hora de egreso del celular
         'status',                   // Estado (pendiente, en_reparacion, reparado, no_reparable, entregado)
         'observations',             // Observaciones adicionales
+        'delivered_by',             // Usuario que entregó la reparación
     ];
 
     protected $casts = [
@@ -33,10 +34,18 @@ class Repair extends Model
     ];
 
     /**
-     * Relación con el usuario (técnico)
+     * Relación con el usuario (técnico original)
      */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Relación con el usuario que entregó el equipo
+     */
+    public function deliveredBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'delivered_by');
     }
 }

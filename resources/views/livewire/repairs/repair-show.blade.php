@@ -106,6 +106,12 @@
                                     <dt class="font-semibold text-gray-900">Fecha de Egreso</dt>
                                     <dd class="mt-1">{{ $repair->salida_date ? $repair->salida_date->format('d/m/Y H:i') : 'Aún en taller' }}</dd>
                                 </div>
+                                @if($repair->status === 'entregado' && $repair->deliveredBy)
+                                <div>
+                                    <dt class="font-semibold text-gray-900">Entregado por</dt>
+                                    <dd class="mt-1 text-gray-800">{{ $repair->deliveredBy->name }} ({{ $repair->deliveredBy->username }})</dd>
+                                </div>
+                                @endif
                             </dl>
 
                             <dl class="space-y-4 text-sm text-gray-600">

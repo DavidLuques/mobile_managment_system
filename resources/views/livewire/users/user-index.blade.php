@@ -29,6 +29,12 @@
                     </div>
 
                     <div>
+                        <x-input-label for="username" :value="__('Usuario de acceso')" />
+                        <x-text-input wire:model="username" id="username" class="block mt-1 w-full" type="text" required />
+                        <x-input-error :messages="$errors->get('username')" class="mt-2" />
+                    </div>
+
+                    <div>
                         <x-input-label for="email" :value="__('Email')" />
                         <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" required />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -59,6 +65,7 @@
                         <thead class="uppercase tracking-wider border-b-2 bg-gray-50 border-gray-200">
                             <tr>
                                 <th scope="col" class="px-6 py-4">Nombre</th>
+                                <th scope="col" class="px-6 py-4">Usuario</th>
                                 <th scope="col" class="px-6 py-4">Email</th>
                                 <th scope="col" class="px-6 py-4 text-right">Acciones</th>
                             </tr>
@@ -67,6 +74,7 @@
                             @forelse ($users as $user)
                                 <tr class="border-b border-gray-100 peer-checked:bg-blue-50 hover:bg-gray-50">
                                     <td class="px-6 py-4">{{ $user->name }}</td>
+                                    <td class="px-6 py-4">{{ $user->username }}</td>
                                     <td class="px-6 py-4">{{ $user->email }}</td>
                                     <td class="px-6 py-4 text-right text-sm">
                                         <button wire:click="deleteUser({{ $user->id }})" wire:confirm="¿Estás seguro de eliminar este técnico?" class="text-red-600 hover:text-red-900">

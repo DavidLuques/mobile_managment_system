@@ -10,11 +10,13 @@ use Illuminate\Support\Facades\Hash;
 class UserIndex extends Component
 {
     public $name = '';
+    public $username = '';
     public $email = '';
     public $password = '';
 
     protected $rules = [
         'name' => 'required|string|max:255',
+        'username' => 'required|string|max:255|unique:users',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:8',
     ];
@@ -25,12 +27,13 @@ class UserIndex extends Component
 
         User::create([
             'name' => $this->name,
+            'username' => $this->username,
             'email' => $this->email,
             'password' => Hash::make($this->password),
             'role' => 'tecnico',
         ]);
 
-        $this->reset(['name', 'email', 'password']);
+        $this->reset(['name', 'username', 'email', 'password']);
         session()->flash('message', 'Técnico creado con éxito.');
     }
 

@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('repairs', function (Blueprint $table) {
-            $table->string('imei')->nullable()->after('phone_model');
-
+            $table->foreignId('delivered_by')->nullable()->constrained('users')->onDelete('set null');
         });
     }
 
@@ -23,7 +22,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('repairs', function (Blueprint $table) {
-            $table->dropColumn('imei');
+            $table->dropForeign(['delivered_by']);
+            $table->dropColumn('delivered_by');
         });
     }
 };
