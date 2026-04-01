@@ -24,6 +24,7 @@ class Repair extends Model
         'status',                   // Estado (pendiente, en_reparacion, reparado, no_reparable, entregado)
         'observations',             // Observaciones adicionales
         'delivered_by',             // Usuario que entregó la reparación
+        'images',                   // Imágenes de evidencia
     ];
 
     protected $casts = [
@@ -31,6 +32,7 @@ class Repair extends Model
         'reparado_date' => 'datetime',
         'salida_date' => 'datetime',
         'repair_cost' => 'decimal:2',
+        'images' => 'array',
     ];
 
     /**

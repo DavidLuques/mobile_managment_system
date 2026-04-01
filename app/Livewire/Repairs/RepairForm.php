@@ -5,13 +5,18 @@ namespace App\Livewire\Repairs;
 use Livewire\Component;
 
 use App\Models\Repair;
+use Livewire\WithFileUploads;
 
 class RepairForm extends Component
 {
+    use WithFileUploads;
+
     public ?Repair $repair = null;
 
     public $customer_name, $customer_phone, $customer_email;
     public $phone_brand, $phone_model, $phone_color;
+    public $photos = [];
+    public $existing_images = [];
     public $problem_description, $technical_notes, $repair_cost = 0;
     public $status = 'pendiente', $observations;
 
@@ -29,6 +34,8 @@ class RepairForm extends Component
             'repair_cost' => 'nullable|numeric|min:0',
             'status' => 'required|in:pendiente,en_reparacion,reparado,no_reparable,entregado',
             'observations' => 'nullable|string',
+            'photos' => 'nullable|array|max:5',
+            'photos.*' => 'image|max:5120',
         ];
     }
 
@@ -52,6 +59,7 @@ class RepairForm extends Component
             $this->repair_cost = $repair->repair_cost;
             $this->status = $repair->status;
             $this->observations = $repair->observations;
+            $this->existing_images = $repair->images ?? [];
         }
     }
 
@@ -72,6 +80,17 @@ class RepairForm extends Component
             'status' => $this->status,
             'observations' => $this->observations,
         ];
+
+        if (count($this->existing_images) + count($this->photos) > 5) {
+            $this->addError('photos', 'No puedes guardar más de 5 imágenes en total.');
+            return;
+        }
+
+        $imagePaths = $this->existing_images;
+        foreach ($this->photos as $photo) {
+            $imagePaths[] = $photo->store('repairs', 'public');
+        }
+        $data['images'] = $imagePaths;
 
         if (!$this->repair || !$this->repair->exists) {
             $data['user_id'] = auth()->id();

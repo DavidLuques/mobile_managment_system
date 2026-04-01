@@ -135,6 +135,47 @@
                             <textarea wire:model="observations" id="observations" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" rows="2"></textarea>
                             <x-input-error :messages="$errors->get('observations')" class="mt-2" />
                         </div>
+                        </div>
+                        
+                        <!-- Evidencia Visual (Carga de Fotos) -->
+                        <div class="mt-6 pt-4 border-t">
+                            <h3 class="text-lg font-medium text-gray-900 mb-2">Evidencia Visual (Fotos)</h3>
+                            <p class="text-sm text-gray-500 mb-4">Sube fotos del equipo (Máx 5). Documenta el estado original del teléfono para prevenir reclamos.</p>
+                            
+                            <div>
+                                <x-input-label for="photos" :value="__('Seleccionar Fotos')" />
+                                <input type="file" wire:model="photos" id="photos" multiple accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
+                                <x-input-error :messages="$errors->get('photos')" class="mt-2" />
+                            </div>
+
+                            <div wire:loading wire:target="photos" class="mt-2 text-sm text-indigo-600">Cargando previsualización...</div>
+
+                            @if(count($existing_images) > 0)
+                            <div class="mt-4">
+                                <span class="block text-sm font-medium text-gray-700 mb-2">Fotos guardadas:</span>
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach($existing_images as $img)
+                                        <div class="relative w-24 h-24 border rounded overflow-hidden">
+                                            <img src="{{ Storage::url($img) }}" class="object-cover w-full h-full" alt="Evidencia">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @endif
+
+                            @if($photos)
+                            <div class="mt-4">
+                                <span class="block text-sm font-medium text-gray-700 mb-2">Fotos listas para guardar:</span>
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach($photos as $photo)
+                                        <div class="relative w-24 h-24 border rounded border-indigo-300 overflow-hidden">
+                                            <img src="{{ $photo->temporaryUrl() }}" class="object-cover w-full h-full" alt="Preview">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @endif
+                        </div>
                     </div>
 
                     <div class="flex items-center gap-4 pt-4 border-t">

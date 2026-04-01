@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('repairs.history')" :active="request()->routeIs('repairs.history')">
                         {{ __('Histórico') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.*')">
+                        {{ __('Ventas') }}
+                    </x-nav-link>
                     @if(auth()->check() && auth()->user()->role === 'admin')
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                             {{ __('Gestión Técnicos') }}
@@ -86,6 +89,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('repairs.history')" :active="request()->routeIs('repairs.history')">
                 {{ __('Histórico') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.*')">
+                {{ __('Ventas') }}
             </x-responsive-nav-link>
             @if(auth()->check() && auth()->user()->role === 'admin')
                 <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">

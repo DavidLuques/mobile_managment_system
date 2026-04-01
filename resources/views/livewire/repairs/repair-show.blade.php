@@ -127,6 +127,20 @@
                         </div>
                     </div>
 
+                    @if($repair->images && count($repair->images) > 0)
+                    <!-- Evidencia Visual -->
+                    <div class="md:col-span-2 pt-6 border-t">
+                        <h3 class="text-lg font-bold text-gray-900 mb-4">Evidencia Visual (Fotos)</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                            @foreach($repair->images as $img)
+                                <a href="{{ Storage::url($img) }}" target="_blank" class="block relative w-full pt-[100%] border rounded-lg overflow-hidden shadow-sm hover:opacity-75 transition-opacity">
+                                    <img src="{{ Storage::url($img) }}" class="absolute inset-0 object-cover w-full h-full" alt="Evidencia">
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
                     @if($repair->status === 'reparado' || $repair->status === 'entregado')
                         <div class="md:col-span-2 pt-4 flex justify-end">
                             <a href="{{ route('repairs.invoice', $repair->id) }}" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-sm inline-flex items-center">

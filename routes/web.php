@@ -23,6 +23,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/repairs/{repair}/edit', \App\Livewire\Repairs\RepairForm::class)->name('repairs.edit');
     Route::get('/repairs/{repair}/invoice', [\App\Http\Controllers\InvoiceController::class, 'generate'])->name('repairs.invoice');
 
+    // Sales Routes
+    Route::get('/sales/history', \App\Livewire\Sales\SalePhoneHistory::class)->name('sales.history');
+    Route::get('/sales', \App\Livewire\Sales\SalePhoneIndex::class)->name('sales.index');
+    Route::get('/sales/create', \App\Livewire\Sales\SalePhoneForm::class)->name('sales.create');
+    Route::get('/sales/{phone}', \App\Livewire\Sales\SalePhoneShow::class)->name('sales.show');
+    Route::get('/sales/{phone}/edit', \App\Livewire\Sales\SalePhoneForm::class)->name('sales.edit');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
