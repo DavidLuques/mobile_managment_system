@@ -1,19 +1,19 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-100 leading-tight">
             {{ $repair && $repair->exists ? __('Editar Orden de Reparación #'.$repair->id) : __('Nueva Orden de Reparación') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="p-4 sm:p-8 bg-gray-800/60 backdrop-blur-xl border border-white/10 shadow-2xl sm:rounded-lg">
                 <form wire:submit.prevent="save" class="space-y-6">
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Cliente Info -->
                         <div class="space-y-4">
-                            <h3 class="text-lg font-medium text-gray-900 border-b pb-2">Información del Cliente</h3>
+                            <h3 class="text-lg font-medium text-gray-100 border-b border-gray-700 pb-2">Información del Cliente</h3>
                             <div>
                                 <x-input-label for="customer_name" :value="__('Nombre Completo *')" />
                                 <x-text-input wire:model="customer_name" id="customer_name" class="block mt-1 w-full" type="text" required />
@@ -33,7 +33,7 @@
 
                         <!-- Equipo Info -->
                         <div class="space-y-4">
-                            <h3 class="text-lg font-medium text-gray-900 border-b pb-2">Información del Equipo</h3>
+                            <h3 class="text-lg font-medium text-gray-100 border-b border-gray-700 pb-2">Información del Equipo</h3>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <x-input-label for="phone_brand" :value="__('Marca *')" />
@@ -56,11 +56,11 @@
 
                     <!-- Reparación Info -->
                     <div class="space-y-4 mt-6">
-                        <h3 class="text-lg font-medium text-gray-900 border-b pb-2">Detalles de la Reparación</h3>
+                        <h3 class="text-lg font-medium text-gray-100 border-b border-gray-700 pb-2">Detalles de la Reparación</h3>
                         
                         <div>
                             <x-input-label for="problem_description" :value="__('Descripción del Problema *')" />
-                            <textarea wire:model="problem_description" id="problem_description" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" rows="3" required></textarea>
+                            <textarea wire:model="problem_description" id="problem_description" class="bg-gray-900/50 border-gray-700 text-gray-100 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full placeholder-gray-500" rows="3" required></textarea>
                             <x-input-error :messages="$errors->get('problem_description')" class="mt-2" />
                         </div>
 
@@ -70,45 +70,45 @@
                                 <label class="cursor-pointer">
                                     <input type="radio" name="status" wire:model="status" value="pendiente" class="peer sr-only">
                                     <div class="rounded-lg border px-4 py-2 text-center text-sm font-medium transition-all
-                                        bg-yellow-50 text-yellow-800 border-yellow-200
-                                        peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-yellow-500 peer-checked:bg-yellow-200 peer-checked:border-yellow-500
-                                        hover:bg-yellow-100 shadow-sm">
+                                        bg-yellow-900/30 text-yellow-300 border-yellow-500/30
+                                        peer-checked:line-through peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-offset-gray-800 peer-checked:ring-yellow-400 peer-checked:bg-yellow-600/50 peer-checked:border-yellow-400 peer-checked:text-yellow-100
+                                        hover:bg-yellow-800/40 shadow-sm">
                                         Pendiente
                                     </div>
                                 </label>
                                 <label class="cursor-pointer">
                                     <input type="radio" name="status" wire:model="status" value="en_reparacion" class="peer sr-only">
                                     <div class="rounded-lg border px-4 py-2 text-center text-sm font-medium transition-all
-                                        bg-blue-50 text-blue-800 border-blue-200
-                                        peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-blue-500 peer-checked:bg-blue-200 peer-checked:border-blue-500
-                                        hover:bg-blue-100 shadow-sm">
+                                        bg-blue-900/30 text-blue-300 border-blue-500/30
+                                        peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-offset-gray-800 peer-checked:ring-blue-400 peer-checked:bg-blue-600/50 peer-checked:border-blue-400 peer-checked:text-blue-100
+                                        hover:bg-blue-800/40 shadow-sm">
                                         En Reparación
                                     </div>
                                 </label>
                                 <label class="cursor-pointer">
                                     <input type="radio" name="status" wire:model="status" value="reparado" class="peer sr-only">
                                     <div class="rounded-lg border px-4 py-2 text-center text-sm font-medium transition-all
-                                        bg-green-50 text-green-800 border-green-200
-                                        peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-green-500 peer-checked:bg-green-200 peer-checked:border-green-500
-                                        hover:bg-green-100 shadow-sm">
+                                        bg-green-900/30 text-green-300 border-green-500/30
+                                        peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-offset-gray-800 peer-checked:ring-green-400 peer-checked:bg-green-600/50 peer-checked:border-green-400 peer-checked:text-green-100
+                                        hover:bg-green-800/40 shadow-sm">
                                         Reparado
                                     </div>
                                 </label>
                                 <label class="cursor-pointer">
                                     <input type="radio" name="status" wire:model="status" value="entregado" class="peer sr-only">
                                     <div class="rounded-lg border px-4 py-2 text-center text-sm font-medium transition-all
-                                        bg-gray-100 text-gray-800 border-gray-300
-                                        peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-gray-600 peer-checked:bg-gray-300 peer-checked:border-gray-600
-                                        hover:bg-gray-200 shadow-sm">
+                                        bg-gray-900/30 text-gray-300 border-gray-500/30
+                                        peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-offset-gray-800 peer-checked:ring-gray-400 peer-checked:bg-gray-600/50 peer-checked:border-gray-400 peer-checked:text-gray-100
+                                        hover:bg-gray-800/40 shadow-sm">
                                         Entregado
                                     </div>
                                 </label>
                                 <label class="cursor-pointer">
                                     <input type="radio" name="status" wire:model="status" value="no_reparable" class="peer sr-only">
                                     <div class="rounded-lg border px-4 py-2 text-center text-sm font-medium transition-all
-                                        bg-red-50 text-red-800 border-red-200
-                                        peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-red-500 peer-checked:bg-red-200 peer-checked:border-red-500
-                                        hover:bg-red-100 shadow-sm">
+                                        bg-red-900/30 text-red-300 border-red-500/30
+                                        peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-offset-gray-800 peer-checked:ring-red-400 peer-checked:bg-red-600/50 peer-checked:border-red-400 peer-checked:text-red-100
+                                        hover:bg-red-800/40 shadow-sm">
                                         No Reparable
                                     </div>
                                 </label>
@@ -126,36 +126,36 @@
 
                         <div>
                             <x-input-label for="technical_notes" :value="__('Notas Técnicas (Internas)')" />
-                            <textarea wire:model="technical_notes" id="technical_notes" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" rows="2"></textarea>
+                            <textarea wire:model="technical_notes" id="technical_notes" class="bg-gray-900/50 border-gray-700 text-gray-100 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full placeholder-gray-500" rows="2"></textarea>
                             <x-input-error :messages="$errors->get('technical_notes')" class="mt-2" />
                         </div>
                         
                         <div>
                             <x-input-label for="observations" :value="__('Observaciones de Entrega')" />
-                            <textarea wire:model="observations" id="observations" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" rows="2"></textarea>
+                            <textarea wire:model="observations" id="observations" class="bg-gray-900/50 border-gray-700 text-gray-100 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full placeholder-gray-500" rows="2"></textarea>
                             <x-input-error :messages="$errors->get('observations')" class="mt-2" />
                         </div>
                         </div>
                         
                         <!-- Evidencia Visual (Carga de Fotos) -->
-                        <div class="mt-6 pt-4 border-t">
-                            <h3 class="text-lg font-medium text-gray-900 mb-2">Evidencia Visual (Fotos)</h3>
-                            <p class="text-sm text-gray-500 mb-4">Sube fotos del equipo (Máx 5). Documenta el estado original del teléfono para prevenir reclamos.</p>
+                        <div class="mt-6 pt-4 border-t border-gray-700">
+                            <h3 class="text-lg font-medium text-gray-100 mb-2">Evidencia Visual (Fotos)</h3>
+                            <p class="text-sm text-gray-400 mb-4">Sube fotos del equipo (Máx 5). Documenta el estado original del teléfono para prevenir reclamos.</p>
                             
                             <div>
                                 <x-input-label for="photos" :value="__('Seleccionar Fotos')" />
-                                <input type="file" wire:model="photos" id="photos" multiple accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
+                                <input type="file" wire:model="photos" id="photos" multiple accept="image/*" class="mt-1 block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-600 file:text-sm file:font-semibold file:bg-indigo-900/50 file:text-indigo-300 hover:file:bg-indigo-800/50" />
                                 <x-input-error :messages="$errors->get('photos')" class="mt-2" />
                             </div>
 
-                            <div wire:loading wire:target="photos" class="mt-2 text-sm text-indigo-600">Cargando previsualización...</div>
+                            <div wire:loading wire:target="photos" class="mt-2 text-sm text-indigo-400">Cargando previsualización...</div>
 
                             @if(count($existing_images) > 0)
                             <div class="mt-4">
-                                <span class="block text-sm font-medium text-gray-700 mb-2">Fotos guardadas:</span>
+                                <span class="block text-sm font-medium text-gray-300 mb-2">Fotos guardadas:</span>
                                 <div class="flex flex-wrap gap-2">
                                     @foreach($existing_images as $img)
-                                        <div class="relative w-24 h-24 border rounded overflow-hidden">
+                                        <div class="relative w-24 h-24 border border-gray-700 rounded overflow-hidden">
                                             <img src="{{ Storage::url($img) }}" class="object-cover w-full h-full" alt="Evidencia">
                                         </div>
                                     @endforeach
@@ -165,7 +165,7 @@
 
                             @if($photos)
                             <div class="mt-4">
-                                <span class="block text-sm font-medium text-gray-700 mb-2">Fotos listas para guardar:</span>
+                                <span class="block text-sm font-medium text-gray-300 mb-2">Fotos listas para guardar:</span>
                                 <div class="flex flex-wrap gap-2">
                                     @foreach($photos as $photo)
                                         <div class="relative w-24 h-24 border rounded border-indigo-300 overflow-hidden">
@@ -178,9 +178,9 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-4 pt-4 border-t">
+                    <div class="flex items-center gap-4 pt-4 border-t border-gray-700">
                         <x-primary-button>{{ __('Guardar') }}</x-primary-button>
-                        <a href="{{ route('repairs.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50">
+                        <a href="{{ route('repairs.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-md font-semibold text-xs text-gray-200 uppercase tracking-widest shadow-sm hover:bg-gray-600/80 transition-all">
                             Cancelar
                         </a>
                     </div>

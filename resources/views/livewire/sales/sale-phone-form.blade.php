@@ -1,19 +1,19 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-100 leading-tight">
             {{ $phone && $phone->exists ? __('Editar Equipo #'.$phone->id) : __('Nueva Compra de Equipo') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="p-4 sm:p-8 bg-gray-800/60 backdrop-blur-xl border border-white/10 shadow-2xl sm:rounded-lg">
                 <form wire:submit.prevent="save" class="space-y-6">
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Detalles del Equipo -->
                         <div class="space-y-4">
-                            <h3 class="text-lg font-medium text-gray-900 border-b pb-2">Información del Equipo</h3>
+                            <h3 class="text-lg font-medium text-gray-100 border-b border-gray-700 pb-2">Información del Equipo</h3>
                             <div>
                                 <x-input-label for="brand" :value="__('Marca *')" />
                                 <x-text-input wire:model="brand" id="brand" class="block mt-1 w-full" type="text" required />
@@ -31,24 +31,24 @@
                                     <label class="cursor-pointer">
                                         <input type="radio" name="status" wire:model="status" value="en_preparacion" class="peer sr-only">
                                         <div class="rounded-lg border px-4 py-2 text-center text-sm font-medium transition-all
-                                            bg-yellow-50 text-yellow-800 border-yellow-200
-                                            peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-yellow-500 peer-checked:bg-yellow-200 peer-checked:border-yellow-500 hover:bg-yellow-100 shadow-sm">
+                                            bg-yellow-900/30 text-yellow-300 border-yellow-500/30
+                                            peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-offset-gray-800 peer-checked:ring-yellow-400 peer-checked:bg-yellow-600/50 peer-checked:border-yellow-400 peer-checked:text-yellow-100 hover:bg-yellow-800/40 shadow-sm">
                                             En Preparación
                                         </div>
                                     </label>
                                     <label class="cursor-pointer">
                                         <input type="radio" name="status" wire:model="status" value="en_venta" class="peer sr-only">
                                         <div class="rounded-lg border px-4 py-2 text-center text-sm font-medium transition-all
-                                            bg-green-50 text-green-800 border-green-200
-                                            peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-green-500 peer-checked:bg-green-200 peer-checked:border-green-500 hover:bg-green-100 shadow-sm">
+                                            bg-green-900/30 text-green-300 border-green-500/30
+                                            peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-offset-gray-800 peer-checked:ring-green-400 peer-checked:bg-green-600/50 peer-checked:border-green-400 peer-checked:text-green-100 hover:bg-green-800/40 shadow-sm">
                                             En Venta
                                         </div>
                                     </label>
                                     <label class="cursor-pointer">
                                         <input type="radio" name="status" wire:model="status" value="vendido" class="peer sr-only">
                                         <div class="rounded-lg border px-4 py-2 text-center text-sm font-medium transition-all
-                                            bg-gray-100 text-gray-800 border-gray-300
-                                            peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-gray-600 peer-checked:bg-gray-300 peer-checked:border-gray-600 hover:bg-gray-200 shadow-sm">
+                                            bg-gray-900/30 text-gray-300 border-gray-500/30
+                                            peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-offset-gray-800 peer-checked:ring-gray-400 peer-checked:bg-gray-600/50 peer-checked:border-gray-400 peer-checked:text-gray-100 hover:bg-gray-800/40 shadow-sm">
                                             Vendido
                                         </div>
                                     </label>
@@ -59,7 +59,7 @@
 
                         <!-- Costos y Reparación -->
                         <div class="space-y-4">
-                            <h3 class="text-lg font-medium text-gray-900 border-b pb-2">Contabilidad y Reparación</h3>
+                            <h3 class="text-lg font-medium text-gray-100 border-b border-gray-700 pb-2">Contabilidad y Reparación</h3>
                             
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
@@ -76,38 +76,38 @@
 
                             <div>
                                 <x-input-label for="repair_description" :value="__('Descripción de Reparación (Qué se le hizo)')" />
-                                <textarea wire:model="repair_description" id="repair_description" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" rows="2"></textarea>
+                                <textarea wire:model="repair_description" id="repair_description" class="bg-gray-900/50 border-gray-700 text-gray-100 placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" rows="2"></textarea>
                                 <x-input-error :messages="$errors->get('repair_description')" class="mt-2" />
                             </div>
 
-                            <div class="pt-2 border-t mt-4">
+                            <div class="pt-2 border-t border-gray-700 mt-4">
                                 <x-input-label for="sale_price" :value="__('Precio de Venta (Final) ($) *')" class="font-bold text-lg" />
-                                <p class="text-xs text-gray-500 mb-2">Ajusta este precio al monto real en el que se vendió.</p>
-                                <x-text-input wire:model="sale_price" id="sale_price" class="block mt-1 w-full text-lg font-bold text-green-700" type="number" step="0.01" required />
+                                <p class="text-xs text-gray-400 mb-2">Ajusta este precio al monto real en el que se vendió.</p>
+                                <x-text-input wire:model="sale_price" id="sale_price" class="block mt-1 w-full text-lg font-bold text-green-400" type="number" step="0.01" required />
                                 <x-input-error :messages="$errors->get('sale_price')" class="mt-2" />
                             </div>
                         </div>
                     </div>
 
                     <!-- Evidencia Visual (Carga de Fotos) -->
-                    <div class="mt-6 pt-4 border-t">
-                        <h3 class="text-lg font-medium text-gray-900 mb-2">Fotos del Equipo</h3>
-                        <p class="text-sm text-gray-500 mb-4">Sube fotos del equipo para mostrar el estado en el que se encuentra (Máx 5).</p>
+                    <div class="mt-6 pt-4 border-t border-gray-700">
+                        <h3 class="text-lg font-medium text-gray-100 mb-2">Fotos del Equipo</h3>
+                        <p class="text-sm text-gray-400 mb-4">Sube fotos del equipo para mostrar el estado en el que se encuentra (Máx 5).</p>
                         
                         <div>
                             <x-input-label for="photos" :value="__('Seleccionar Fotos (Opcional)')" />
-                            <input type="file" wire:model="photos" id="photos" multiple accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
+                            <input type="file" wire:model="photos" id="photos" multiple accept="image/*" class="mt-1 block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-600 file:text-sm file:font-semibold file:bg-indigo-900/50 file:text-indigo-300 hover:file:bg-indigo-800/50" />
                             <x-input-error :messages="$errors->get('photos')" class="mt-2" />
                         </div>
 
-                        <div wire:loading wire:target="photos" class="mt-2 text-sm text-indigo-600">Cargando previsualización...</div>
+                        <div wire:loading wire:target="photos" class="mt-2 text-sm text-indigo-400">Cargando previsualización...</div>
 
                         @if(count($existing_images) > 0)
                         <div class="mt-4">
-                            <span class="block text-sm font-medium text-gray-700 mb-2">Fotos guardadas:</span>
+                            <span class="block text-sm font-medium text-gray-300 mb-2">Fotos guardadas:</span>
                             <div class="flex flex-wrap gap-2">
                                 @foreach($existing_images as $img)
-                                    <div class="relative w-24 h-24 border rounded overflow-hidden">
+                                    <div class="relative w-24 h-24 border border-gray-700 rounded overflow-hidden">
                                         <img src="{{ Storage::url($img) }}" class="object-cover w-full h-full" alt="Evidencia">
                                     </div>
                                 @endforeach
@@ -117,7 +117,7 @@
 
                         @if($photos)
                         <div class="mt-4">
-                            <span class="block text-sm font-medium text-gray-700 mb-2">Fotos listas para guardar:</span>
+                            <span class="block text-sm font-medium text-gray-300 mb-2">Fotos listas para guardar:</span>
                             <div class="flex flex-wrap gap-2">
                                 @foreach($photos as $photo)
                                     <div class="relative w-24 h-24 border rounded border-indigo-300 overflow-hidden">
@@ -129,9 +129,9 @@
                         @endif
                     </div>
 
-                    <div class="flex items-center gap-4 pt-4 border-t">
+                    <div class="flex items-center gap-4 pt-4 border-t border-gray-700">
                         <x-primary-button>{{ __('Guardar') }}</x-primary-button>
-                        <a href="{{ route('sales.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50">
+                        <a href="{{ route('sales.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-md font-semibold text-xs text-gray-200 uppercase tracking-widest shadow-sm hover:bg-gray-600/80 transition-all">
                             Cancelar
                         </a>
                     </div>
