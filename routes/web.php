@@ -7,9 +7,9 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/menu', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('menu');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/users', \App\Livewire\Users\UserIndex::class)->name('users.index');

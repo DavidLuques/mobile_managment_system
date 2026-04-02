@@ -5,7 +5,7 @@
                 {{ __('Detalles de Orden #' . $repair->id) }}
             </h2>
             <div class="space-x-2">
-                <a href="{{ route('repairs.edit', $repair->id) }}" class="bg-indigo-600/80 hover:bg-indigo-500/80 shadow-[0_0_10px_rgba(79,70,229,0.3)] text-white font-bold py-2 px-4 rounded border border-indigo-400/50 transition-all">
+                <a href="{{ route('repairs.edit', $repair->id) }}" class="bg-fuchsia-600/80 hover:bg-fuchsia-500/80 shadow-[0_0_10px_rgba(192,38,211,0.3)] text-white font-bold py-2 px-4 rounded border border-fuchsia-400/50 transition-all">
                     Editar
                 </a>
                 <a href="{{ route('repairs.index') }}" class="bg-gray-600/80 hover:bg-gray-500/80 text-white font-bold py-2 px-4 rounded border border-gray-400/50 transition-all">

@@ -31,13 +31,10 @@ class SalePhoneHistory extends Component
         $startOfMonth = now()->startOfMonth();
         $endOfMonth = now()->endOfMonth();
 
-        $monthlySales = SalePhone::where('status', 'vendido')
+        $monthlyProfit = SalePhone::where('status', 'vendido')
             ->whereBetween('sold_at', [$startOfMonth, $endOfMonth])
-            ->get();
-
-        $monthlyProfit = $monthlySales->sum(function($sale) {
-            return $sale->sale_price - ($sale->purchase_price + $sale->repair_cost);
-        });
+            ->selectRaw('SUM(sale_price - (purchase_price + repair_cost)) as total_profit')
+            ->value('total_profit') ?? 0;
 
         return view('livewire.sales.sale-phone-history', [
             'phones' => $phones,

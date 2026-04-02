@@ -6,7 +6,7 @@
             </h2>
             <div class="space-x-2">
                 @if($phone->status !== 'vendido')
-                    <a href="{{ route('sales.edit', $phone->id) }}" class="bg-indigo-600/80 hover:bg-indigo-500/80 shadow-[0_0_10px_rgba(79,70,229,0.3)] text-white font-bold py-2 px-4 rounded border border-indigo-400/50 transition-all inline-flex items-center">
+                    <a href="{{ route('sales.edit', $phone->id) }}" class="bg-fuchsia-600/80 hover:bg-fuchsia-500/80 shadow-[0_0_10px_rgba(192,38,211,0.3)] text-white font-bold py-2 px-4 rounded border border-fuchsia-400/50 transition-all inline-flex items-center">
                         Editar Equipo
                     </a>
                 @endif
@@ -103,7 +103,7 @@
                             @endphp
                             <div class="mt-4 flex justify-between items-center p-4 rounded-lg border bg-gray-900/30 border-gray-500/30 text-gray-300">
                                 <span class="font-medium text-sm">Ganancia Proyectada:</span>
-                                <span class="font-bold text-indigo-400">${{ number_format($ganancia, 2) }}</span>
+                                <span class="font-bold text-fuchsia-400">${{ number_format($ganancia, 2) }}</span>
                             </div>
                         @endif
                     </div>

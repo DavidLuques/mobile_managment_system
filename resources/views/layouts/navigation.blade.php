@@ -5,27 +5,27 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-indigo-400" />
+                    <a href="{{ route('menu') }}" wire:navigate>
+                        <x-application-logo class="block h-9 w-auto fill-current text-fuchsia-400" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('menu')" :active="request()->routeIs('menu')" wire:navigate>
+                        {{ __('Menu') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('repairs.index')" :active="request()->routeIs('repairs.index') || request()->routeIs('repairs.create') || request()->routeIs('repairs.edit')">
-                        {{ __('Reparaciones Activas') }}
+                    <x-nav-link :href="route('repairs.index')" :active="request()->routeIs('repairs.index') || request()->routeIs('repairs.create') || request()->routeIs('repairs.edit')" wire:navigate>
+                        {{ __('Reparaciones') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('repairs.history')" :active="request()->routeIs('repairs.history')">
+                    <x-nav-link :href="route('repairs.history')" :active="request()->routeIs('repairs.history')" wire:navigate>
                         {{ __('Histórico') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.*')">
+                    <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.*')" wire:navigate>
                         {{ __('Ventas') }}
                     </x-nav-link>
                     @if(auth()->check() && auth()->user()->role === 'admin')
-                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" wire:navigate>
                             {{ __('Gestión Técnicos') }}
                         </x-nav-link>
                     @endif
@@ -48,7 +48,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('profile.edit')" wire:navigate>
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
@@ -81,20 +81,20 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('menu')" :active="request()->routeIs('menu')" wire:navigate>
+                {{ __('Menú') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('repairs.index')" :active="request()->routeIs('repairs.index') || request()->routeIs('repairs.create') || request()->routeIs('repairs.edit')">
+            <x-responsive-nav-link :href="route('repairs.index')" :active="request()->routeIs('repairs.index') || request()->routeIs('repairs.create') || request()->routeIs('repairs.edit')" wire:navigate>
                 {{ __('Reparaciones Activas') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('repairs.history')" :active="request()->routeIs('repairs.history')">
+            <x-responsive-nav-link :href="route('repairs.history')" :active="request()->routeIs('repairs.history')" wire:navigate>
                 {{ __('Histórico') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.*')">
+            <x-responsive-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.*')" wire:navigate>
                 {{ __('Ventas') }}
             </x-responsive-nav-link>
             @if(auth()->check() && auth()->user()->role === 'admin')
-                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" wire:navigate>
                     {{ __('Gestión Técnicos') }}
                 </x-responsive-nav-link>
             @endif
@@ -108,7 +108,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="route('profile.edit')" wire:navigate>
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 

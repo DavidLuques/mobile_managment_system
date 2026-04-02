@@ -20,7 +20,7 @@
 
             <div class="p-4 sm:p-8 bg-gray-800/60 backdrop-blur-xl border border-white/10 shadow-2xl sm:rounded-lg">
                 <div class="mb-4">
-                    <input type="text" wire:model.live.debounce.300ms="search" placeholder="Buscar por cliente o equipo..." class="bg-gray-900/50 border-gray-700 text-gray-100 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full sm:w-1/3 placeholder-gray-500">
+                    <input type="text" wire:model.live.debounce.300ms="search" placeholder="Buscar por cliente o equipo..." class="bg-gray-900/50 border-gray-700 text-gray-100 focus:border-fuchsia-500 focus:ring-fuchsia-500 rounded-md shadow-sm block w-full sm:w-1/3 placeholder-gray-500">
                 </div>
 
                 <div class="overflow-x-auto">
@@ -53,15 +53,18 @@
                                     </td>
                                     <td class="px-6 py-4 text-gray-400">{{ $repair->entrada_date->format('d/m/Y H:i') }}</td>
                                     <td class="px-6 py-4 text-right text-sm space-x-3">
-                                        <a href="{{ route('repairs.show', $repair->id) }}" class="inline-block text-blue-400 hover:text-blue-300 transition-colors group" title="Ver Detalles">
+                                        <a href="{{ route('repairs.show', $repair->id) }}" wire:navigate class="inline-block text-blue-400 hover:text-blue-300 transition-colors group" title="Ver Detalles">
                                             <svg class="w-5 h-5 drop-shadow-[0_0_8px_rgba(59,130,246,0)] group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                         </a>
-                                        <a href="{{ route('repairs.edit', $repair->id) }}" class="inline-block text-indigo-400 hover:text-indigo-300 transition-colors group" title="Editar">
-                                            <svg class="w-5 h-5 drop-shadow-[0_0_8px_rgba(99,102,241,0)] group-hover:drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                        <a href="{{ route('repairs.edit', $repair->id) }}" wire:navigate class="inline-block text-fuchsia-400 hover:text-fuchsia-300 transition-colors group" title="Editar">
+                                            <svg class="w-5 h-5 drop-shadow-[0_0_8px_rgba(217,70,239,0)] group-hover:drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                                         </a>
                                         <a href="{{ route('repairs.invoice', $repair->id) }}" target="_blank" class="inline-block text-green-400 hover:text-green-300 transition-colors group" title="Factura PDF">
                                             <svg class="w-5 h-5 drop-shadow-[0_0_8px_rgba(34,197,94,0)] group-hover:drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                                         </a>
+                                        <button wire:click="deleteRepair({{ $repair->id }})" wire:confirm="¿Estás seguro de eliminar esta orden incial de reparación?" class="inline-block text-red-500 hover:text-red-400 transition-colors group" title="Eliminar">
+                                            <svg class="w-5 h-5 drop-shadow-[0_0_8px_rgba(239,68,68,0)] group-hover:drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                        </button>
                                     </td>
                                 </tr>
                             @empty

@@ -30,7 +30,7 @@ class SalePhoneForm extends Component
             'sale_price' => 'required|numeric|min:0',
             'status' => 'required|in:en_preparacion,en_venta,vendido',
             'photos' => 'nullable|array|max:5',
-            'photos.*' => 'image|max:5120',
+            'photos.*' => 'image|max:2048',
         ];
     }
 

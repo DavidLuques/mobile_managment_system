@@ -35,7 +35,7 @@ class RepairForm extends Component
             'status' => 'required|in:pendiente,en_reparacion,reparado,no_reparable,entregado',
             'observations' => 'nullable|string',
             'photos' => 'nullable|array|max:5',
-            'photos.*' => 'image|max:5120',
+            'photos.*' => 'image|max:2048',
         ];
     }
 

@@ -76,7 +76,7 @@
 
                             <div>
                                 <x-input-label for="repair_description" :value="__('Descripción de Reparación (Qué se le hizo)')" />
-                                <textarea wire:model="repair_description" id="repair_description" class="bg-gray-900/50 border-gray-700 text-gray-100 placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" rows="2"></textarea>
+                                <textarea wire:model="repair_description" id="repair_description" class="bg-gray-900/50 border-gray-700 text-gray-100 placeholder-gray-500 focus:border-fuchsia-500 focus:ring-fuchsia-500 rounded-md shadow-sm block mt-1 w-full" rows="2"></textarea>
                                 <x-input-error :messages="$errors->get('repair_description')" class="mt-2" />
                             </div>
 
@@ -96,11 +96,11 @@
                         
                         <div>
                             <x-input-label for="photos" :value="__('Seleccionar Fotos (Opcional)')" />
-                            <input type="file" wire:model="photos" id="photos" multiple accept="image/*" class="mt-1 block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-600 file:text-sm file:font-semibold file:bg-indigo-900/50 file:text-indigo-300 hover:file:bg-indigo-800/50" />
+                            <input type="file" wire:model="photos" id="photos" multiple accept="image/*" class="mt-1 block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-600 file:text-sm file:font-semibold file:bg-fuchsia-900/50 file:text-fuchsia-300 hover:file:bg-fuchsia-800/50" />
                             <x-input-error :messages="$errors->get('photos')" class="mt-2" />
                         </div>
 
-                        <div wire:loading wire:target="photos" class="mt-2 text-sm text-indigo-400">Cargando previsualización...</div>
+                        <div wire:loading wire:target="photos" class="mt-2 text-sm text-fuchsia-400">Cargando previsualización...</div>
 
                         @if(count($existing_images) > 0)
                         <div class="mt-4">
@@ -120,7 +120,7 @@
                             <span class="block text-sm font-medium text-gray-300 mb-2">Fotos listas para guardar:</span>
                             <div class="flex flex-wrap gap-2">
                                 @foreach($photos as $photo)
-                                    <div class="relative w-24 h-24 border rounded border-indigo-300 overflow-hidden">
+                                    <div class="relative w-24 h-24 border rounded border-fuchsia-300 overflow-hidden">
                                         <img src="{{ $photo->temporaryUrl() }}" class="object-cover w-full h-full" alt="Preview">
                                     </div>
                                 @endforeach

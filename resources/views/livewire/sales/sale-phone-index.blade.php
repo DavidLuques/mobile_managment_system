@@ -5,11 +5,11 @@
                 {{ __('Inventario de Ventas') }}
             </h2>
             <div class="space-x-2">
-                <a href="{{ route('sales.history') }}" class="bg-gray-700/80 hover:bg-gray-600/80 text-white font-bold py-2 px-4 rounded shadow-sm inline-flex items-center border border-gray-500/50 transition-all">
+                <a href="{{ route('sales.history') }}" wire:navigate class="bg-gray-700/80 hover:bg-gray-600/80 text-white font-bold py-2 px-4 rounded shadow-sm inline-flex items-center border border-gray-500/50 transition-all">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     Histórico y Ganancias
                 </a>
-                <a href="{{ route('sales.create') }}" class="bg-indigo-600/80 hover:bg-indigo-500/80 text-white font-bold py-2 px-4 rounded shadow-[0_0_15px_rgba(79,70,229,0.3)] inline-flex items-center border border-indigo-400/50 transition-all">
+                <a href="{{ route('sales.create') }}" wire:navigate class="bg-fuchsia-600/80 hover:bg-fuchsia-500/80 text-white font-bold py-2 px-4 rounded shadow-[0_0_15px_rgba(192,38,211,0.3)] inline-flex items-center border border-fuchsia-400/50 transition-all">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                     Nuevo Equipo
                 </a>
@@ -28,7 +28,7 @@
             <div class="p-4 sm:p-8 bg-gray-800/60 backdrop-blur-xl border border-white/10 shadow-2xl sm:rounded-lg">
                 <!-- Buscador -->
                 <div class="mb-4">
-                    <input type="text" wire:model.live.debounce.300ms="search" placeholder="Buscar por marca o modelo..." class="bg-gray-900/50 border-gray-700 text-gray-100 placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full sm:w-1/3">
+                    <input type="text" wire:model.live.debounce.300ms="search" placeholder="Buscar por marca o modelo..." class="bg-gray-900/50 border-gray-700 text-gray-100 placeholder-gray-500 focus:border-fuchsia-500 focus:ring-fuchsia-500 rounded-md shadow-sm block w-full sm:w-1/3">
                 </div>
 
                 <div class="overflow-x-auto">
@@ -57,13 +57,13 @@
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 text-right text-sm space-x-3">
-                                        <a href="{{ route('sales.show', $phone->id) }}" class="inline-flex items-center text-blue-400 hover:text-blue-300 drop-shadow-[0_0_8px_rgba(96,165,250,0.5)] transition-all" title="Ver Detalles">
+                                        <a href="{{ route('sales.show', $phone->id) }}" wire:navigate class="inline-flex items-center text-blue-400 hover:text-blue-300 drop-shadow-[0_0_8px_rgba(96,165,250,0.5)] transition-all" title="Ver Detalles">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                                               <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                                               <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </a>
-                                        <a href="{{ route('sales.edit', $phone->id) }}" class="inline-flex items-center text-amber-400 hover:text-amber-300 drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] transition-all" title="Editar">
+                                        <a href="{{ route('sales.edit', $phone->id) }}" wire:navigate class="inline-flex items-center text-amber-400 hover:text-amber-300 drop-shadow-[0_0_8px_rgba(251,191,36,0.5)] transition-all" title="Editar">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                                               <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.89 1.147l-3.141 1.047a.875.875 0 01-1.11-1.11l1.048-3.142a4.5 4.5 0 011.146-1.89l13.2-13.2z" />
                                               <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 7.125L16.875 4.5" />

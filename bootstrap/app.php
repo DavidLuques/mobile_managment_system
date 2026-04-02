@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
         ]);
+        
+        // Fix for "Too Many Redirects" loop when hitting guests/auth middleware
+        $middleware->redirectGuestsTo('/login');
+        $middleware->redirectUsersTo('/menu');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
