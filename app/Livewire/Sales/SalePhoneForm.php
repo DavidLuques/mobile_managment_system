@@ -30,7 +30,7 @@ class SalePhoneForm extends Component
             'sale_price' => 'required|numeric|min:0',
             'status' => 'required|in:en_preparacion,en_venta,vendido',
             'photos' => 'nullable|array|max:5',
-            'photos.*' => 'image|max:2048',
+            'photos.*' => 'image|max:5120',
         ];
     }
 
@@ -47,6 +47,16 @@ class SalePhoneForm extends Component
             $this->status = $phone->status;
             $this->existing_images = $phone->images ?? [];
         }
+    }
+
+    public function removePhoto($index)
+    {
+        unset($this->photos[$index]);
+    }
+
+    public function removeExistingImage($index)
+    {
+        unset($this->existing_images[$index]);
     }
 
     public function save()

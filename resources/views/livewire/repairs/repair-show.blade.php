@@ -1,4 +1,4 @@
-<div>
+<div x-data="{ lightboxOpen: false, lightboxUrl: '' }">
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-100 leading-tight">
@@ -133,10 +133,18 @@
                         <h3 class="text-lg font-bold text-gray-100 mb-4">Evidencia Visual (Fotos)</h3>
                         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                             @foreach($repair->images as $img)
-                                <a href="{{ Storage::url($img) }}" target="_blank" class="block relative w-full pt-[100%] border border-gray-700 rounded-lg overflow-hidden shadow-sm hover:opacity-75 transition-opacity">
+                                <button type="button" @click="lightboxOpen = true; lightboxUrl = '{{ Storage::url($img) }}'" class="block relative w-full pt-[100%] border border-gray-700 rounded-lg overflow-hidden shadow-sm hover:opacity-75 transition-opacity">
                                     <img src="{{ Storage::url($img) }}" class="absolute inset-0 object-cover w-full h-full" alt="Evidencia">
-                                </a>
+                                </button>
                             @endforeach
+                        </div>
+                        
+                        <!-- Lightbox Modal AlpineJS -->
+                        <div x-cloak x-show="lightboxOpen" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4" @keydown.escape.window="lightboxOpen = false">
+                            <button @click="lightboxOpen = false" class="absolute top-4 right-4 text-white hover:text-fuchsia-400 p-2 z-50" title="Cerrar (Esc)">
+                                <svg class="w-10 h-10 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            </button>
+                            <img :src="lightboxUrl" class="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl relative z-40 cursor-zoom-out" @click="lightboxOpen = false" alt="Vista completa">
                         </div>
                     </div>
                     @endif

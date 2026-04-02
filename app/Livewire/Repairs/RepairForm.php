@@ -35,7 +35,7 @@ class RepairForm extends Component
             'status' => 'required|in:pendiente,en_reparacion,reparado,no_reparable,entregado',
             'observations' => 'nullable|string',
             'photos' => 'nullable|array|max:5',
-            'photos.*' => 'image|max:2048',
+            'photos.*' => 'image|max:5120',
         ];
     }
 
@@ -61,6 +61,16 @@ class RepairForm extends Component
             $this->observations = $repair->observations;
             $this->existing_images = $repair->images ?? [];
         }
+    }
+
+    public function removePhoto($index)
+    {
+        unset($this->photos[$index]);
+    }
+
+    public function removeExistingImage($index)
+    {
+        unset($this->existing_images[$index]);
     }
 
     public function save()

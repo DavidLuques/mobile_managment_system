@@ -98,6 +98,9 @@
                             <x-input-label for="photos" :value="__('Seleccionar Fotos (Opcional)')" />
                             <input type="file" wire:model="photos" id="photos" multiple accept="image/*" class="mt-1 block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-600 file:text-sm file:font-semibold file:bg-fuchsia-900/50 file:text-fuchsia-300 hover:file:bg-fuchsia-800/50" />
                             <x-input-error :messages="$errors->get('photos')" class="mt-2" />
+                            @foreach($errors->get('photos.*') as $key => $messages)
+                                <x-input-error :messages="$messages" class="mt-2" />
+                            @endforeach
                         </div>
 
                         <div wire:loading wire:target="photos" class="mt-2 text-sm text-fuchsia-400">Cargando previsualización...</div>
@@ -106,9 +109,12 @@
                         <div class="mt-4">
                             <span class="block text-sm font-medium text-gray-300 mb-2">Fotos guardadas:</span>
                             <div class="flex flex-wrap gap-2">
-                                @foreach($existing_images as $img)
-                                    <div class="relative w-24 h-24 border border-gray-700 rounded overflow-hidden">
+                                @foreach($existing_images as $key => $img)
+                                    <div class="group relative w-24 h-24 border border-gray-700 rounded overflow-hidden">
                                         <img src="{{ Storage::url($img) }}" class="object-cover w-full h-full" alt="Evidencia">
+                                        <button type="button" wire:click="removeExistingImage({{ $key }})" class="absolute top-1 right-1 bg-red-600/80 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-all drop-shadow-md hover:bg-red-500" title="Eliminar foto">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                        </button>
                                     </div>
                                 @endforeach
                             </div>
@@ -119,9 +125,12 @@
                         <div class="mt-4">
                             <span class="block text-sm font-medium text-gray-300 mb-2">Fotos listas para guardar:</span>
                             <div class="flex flex-wrap gap-2">
-                                @foreach($photos as $photo)
-                                    <div class="relative w-24 h-24 border rounded border-fuchsia-300 overflow-hidden">
+                                @foreach($photos as $key => $photo)
+                                    <div class="group relative w-24 h-24 border rounded border-fuchsia-300 overflow-hidden">
                                         <img src="{{ $photo->temporaryUrl() }}" class="object-cover w-full h-full" alt="Preview">
+                                        <button type="button" wire:click="removePhoto({{ $key }})" class="absolute top-1 right-1 bg-red-600/80 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-all drop-shadow-md hover:bg-red-500" title="Quitar foto">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                        </button>
                                     </div>
                                 @endforeach
                             </div>
