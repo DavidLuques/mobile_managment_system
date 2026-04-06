@@ -16,9 +16,8 @@
     </head>
     <body class="font-sans antialiased text-gray-100 bg-slate-950">
         <div class="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950/40 to-black">
-            @persist('nav-header')
-                @include('layouts.navigation')
-            @endpersist
+            @include('layouts.navigation')
+
 
             <!-- Page Heading -->
             @isset($header)

@@ -37,6 +37,11 @@ class SalePhoneForm extends Component
     public function mount(SalePhone $phone = null)
     {
         if ($phone && $phone->exists) {
+            // Autorización: Solo admin puede editar equipos vendidos
+            if ($phone->status === 'vendido' && auth()->user()->role !== 'admin') {
+                abort(403, 'Solo los administradores pueden editar equipos ya vendidos.');
+            }
+
             $this->phone = $phone;
             $this->brand = $phone->brand;
             $this->model = $phone->model;
@@ -61,6 +66,11 @@ class SalePhoneForm extends Component
 
     public function save()
     {
+        // Re-validar autorización para edición
+        if ($this->phone && $this->phone->exists && $this->phone->status === 'vendido' && auth()->user()->role !== 'admin') {
+            abort(403, 'No tienes permiso para modificar este registro vendido.');
+        }
+
         $this->validate();
 
         $data = [

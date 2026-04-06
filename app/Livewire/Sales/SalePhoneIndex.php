@@ -19,6 +19,10 @@ class SalePhoneIndex extends Component
 
     public function deletePhone($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            abort(403);
+        }
+
         $phone = SalePhone::findOrFail($id);
         $phone->delete();
         session()->flash('message', 'Equipo eliminado del inventario.');

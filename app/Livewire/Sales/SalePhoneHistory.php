@@ -17,6 +17,18 @@ class SalePhoneHistory extends Component
         $this->resetPage();
     }
 
+    public function deletePhone($id)
+    {
+        if (auth()->user()->role !== 'admin') {
+            abort(403);
+        }
+
+        $phone = SalePhone::findOrFail($id);
+        $phone->delete();
+
+        session()->flash('message', 'Registro de venta eliminado correctamente.');
+    }
+
     public function render()
     {
         $phones = SalePhone::where('status', 'vendido')

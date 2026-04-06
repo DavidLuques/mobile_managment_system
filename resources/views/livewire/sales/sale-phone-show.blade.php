@@ -5,7 +5,7 @@
                 {{ __('Detalles del Equipo #') . $phone->id }}
             </h2>
             <div class="space-x-2">
-                @if($phone->status !== 'vendido')
+                @if(auth()->user()->role === 'admin' || $phone->status !== 'vendido')
                     <a href="{{ route('sales.edit', $phone->id) }}" class="bg-fuchsia-600/80 hover:bg-fuchsia-500/80 shadow-[0_0_10px_rgba(192,38,211,0.3)] text-white font-bold py-2 px-4 rounded border border-fuchsia-400/50 transition-all inline-flex items-center">
                         Editar Equipo
                     </a>
